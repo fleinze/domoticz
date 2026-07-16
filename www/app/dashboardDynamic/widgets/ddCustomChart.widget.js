@@ -36,6 +36,9 @@ define([
         if (type === 'General' && sub === 'Current') {
             return { sensor: 'counter', field: function(d){ return d.v }, unit: 'A' };
         }
+		if (type === 'General' && sub === 'Custom Sensor' {
+            return { sensor: 'Percentage', field: function(d){ return d.v !== undefined ? d.v : d.v_avg; }, unit: device.SensorUnit || '?' };
+        }
         if (type.indexOf('Meter') >= 0 || type === 'Cube Electric' ||
             (type === 'General' && (sub === 'kWh' || sub === 'Counter Incremental' || sub === 'Managed Counter'))) {
             if (stv === 1) { return { sensor: 'counter', field: function(d){ return d.v; }, unit: 'm³' }; }
